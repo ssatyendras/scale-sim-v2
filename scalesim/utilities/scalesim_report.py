@@ -32,7 +32,7 @@ class ScalesimReport:
     #
     def load_detail_report_data(self, data_dir='.', run_name=''):
         csv_filename = data_dir + '/' + run_name + '/DETAILED_ACCESS_REPORT.csv'
-        self.bandwidths_df = pd.read_csv(csv_filename, sep=r'\s*,\s*', engine='python')
+        self.details_df = pd.read_csv(csv_filename, sep=r'\s*,\s*', engine='python')
         self.details_df_ready = True
 
     #
@@ -65,6 +65,30 @@ class ScalesimReport:
         col_name = 'SRAM IFMAP Reads'
         elems = self.details_df[col_name].to_list()
 
+        return elems
+    
+    #
+    def get_sram_ifmap_dram_bw_all_layer(self):
+        assert self.bandwidths_df_ready, 'Data not read yet'
+        col_name = 'Avg IFMAP DRAM BW'
+        elems = self.bandwidths_df[col_name].to_list()
+        
+        return elems
+    
+    #
+    def get_sram_filter_dram_bw_all_layer(self):
+        assert self.bandwidths_df_ready, 'Data not read yet'
+        col_name = 'Avg FILTER DRAM BW'
+        elems = self.bandwidths_df[col_name].to_list()
+        
+        return elems
+    
+    #
+    def get_sram_ofm_dram_bw_all_layer(self):
+        assert self.bandwidths_df_ready, 'Data not read yet'
+        col_name = 'Avg OFMAP DRAM BW'
+        elems = self.bandwidths_df[col_name].to_list()
+        
         return elems
 
 if __name__ == '__main__':
