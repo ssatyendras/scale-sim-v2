@@ -164,7 +164,8 @@ class double_buffered_scratchpad:
         filter_serviced_cycles = []
         ofmap_serviced_cycles = []
 
-        pbar_disable = not self.verbose
+        # pbar_disable = not self.verbose
+        pbar_disable = True
         for i in tqdm(range(ofmap_lines), disable=pbar_disable):
 
             cycle_arr = np.zeros((1,1)) + i + self.stall_cycles
